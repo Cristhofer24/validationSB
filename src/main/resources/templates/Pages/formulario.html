@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css" rel="stylesheet" />
+    <title>Historial Clinico</title>
+</head>
+<body>
+
+<!--Nav Bar-->
+
+<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+        </a>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <li>
+                    <a th:href="@{/}" class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Inicio</a>
+                </li>
+                <li>
+                    <a th:href="@{/Formulario}" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Registro Clinico</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--Section-->
+<section class="bg-white dark:bg-gray-900 py-8 lg:py-16 px-4 mx-auto max-w-screen-xl">
+    <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+        Registro del Paciente
+    </h2>
+    <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+        Complete los datos del paciente para registrar el historial médico.
+    </p>
+
+    <form th:action="@{/Historial}" method="post" th:object="${paciente}" class="space-y-8">
+
+    <!-- Información Personal -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md dark:bg-gray-800">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Información del Paciente</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Nombre Completo -->
+                <div>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nombres Completos</label>
+                    <input th:field="*{nombre}" type="text" id="name" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nombres Completos" required>
+                    <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="text-red-500 text-xs">Nombre incorrecto</span>
+                </div>
+
+                <!-- Fecha de Nacimiento -->
+                <div>
+                    <label for="bornDate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fecha de Nacimiento</label>
+                    <input th:field="*{fechaNacimiento}" type="date" id="bornDate" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                    <span th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="text-red-500 text-xs">Fecha incorrecta</span>
+                </div>
+
+                <!-- Edad -->
+                <div>
+                    <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Edad</label>
+                    <input th:field="*{edad}" type="text" id="age" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Edad del paciente" required>
+                    <span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="text-red-500 text-xs">Edad incorrecta</span>
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Correo Electrónico</label>
+                    <input th:field="*{email}" type="email" id="email" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="name@gmail.com" required>
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-500 text-xs">Correo incorrecto</span>
+                </div>
+
+                <!-- Dirección -->
+                <div class="sm:col-span-2">
+                    <label for="Address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Dirección</label>
+                    <textarea th:field="*{domicilio}" id="Address" rows="4" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Dirección completa" required></textarea>
+                    <span th:if="${#fields.hasErrors('domicilio')}" th:errors="*{domicilio}" class="text-red-500 text-xs">Dirección incorrecta</span>
+                </div>
+
+                <!-- Teléfono -->
+                <div>
+                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Teléfono</label>
+                    <input th:field="*{telefono}" type="text" id="phone" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Número de teléfono" required>
+                    <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="text-red-500 text-xs">Teléfono incorrecto</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información Médica -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md dark:bg-gray-800">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Datos Médicos</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Alergias -->
+                <div>
+                    <label for="allergies" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Alergias</label>
+                    <input th:field="*{alergias}" type="text" id="allergies" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Escriba las alergias" required>
+                    <span th:if="${#fields.hasErrors('alergias')}" th:errors="*{alergias}" class="text-red-500 text-xs">Dato incorrecto</span>
+                </div>
+
+                <!-- Enfermedades Crónicas -->
+                <div class="sm:col-span-2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">¿Tiene Enfermedades Crónicas?</label>
+                    <div class="flex items-center gap-6 mb-4">
+                        <div class="flex items-center">
+                            <input th:field="*{enfermedadOp}" type="radio" value="Si" name="enfermedadOp" id="enfermedadSi" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
+                            <label for="enfermedadSi" class="ml-2 text-sm text-gray-900 dark:text-gray-300">Sí</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input th:field="*{enfermedadOp}" type="radio" value="No" name="enfermedadOp" id="enfermedadNo" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
+                            <label for="enfermedadNo" class="ml-2 text-sm text-gray-900 dark:text-gray-300">No</label>
+                        </div>
+                    </div>
+                    <span th:if="${#fields.hasErrors('enfermedadOp')}" th:errors="*{enfermedadOp}" class="text-red-500 text-xs">Seleccione una opción</span>
+                </div>
+
+                <!-- Descripción de la Enfermedad -->
+                <div class="sm:col-span-2">
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Descripción de la Enfermedad</label>
+                    <textarea th:field="*{description}" id="description" rows="4" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Especifique la enfermedad"></textarea>
+                </div>
+
+                <!-- Medicación -->
+                <div class="sm:col-span-2">
+                    <label for="medications" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Medicación</label>
+                    <textarea th:field="*{medicacion}" id="medications" rows="4" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Escriba la medicación"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Próxima Consulta -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md dark:bg-gray-800">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Próxima Consulta</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Fecha de la Próxima Consulta -->
+                <div>
+                    <label for="nextvisit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fecha de la Próxima Consulta</label>
+                    <input th:field="*{nextvisit}" type="date" id="nextvisit" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                </div>
+
+                <!-- Hora de la Próxima Consulta -->
+                <div>
+                    <label for="hour" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hora de la Próxima Consulta</label>
+                    <input th:field="*{hora}" type="time" id="hour" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información del Doctor y Precio -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md dark:bg-gray-800">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Información de la Consulta</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Doctor que atendió -->
+                <div>
+                    <label for="nombreDr" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Doctor que le atendió</label>
+                    <input th:field="*{nombreDr}" type="text" id="nombreDr" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nombre del doctor">
+                </div>
+
+                <!-- Precio de la consulta -->
+                <div>
+                    <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Precio de la Consulta ($)</label>
+                    <input th:field="*{precio}" type="text" id="price" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Precio en dólares">
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón de Enviar -->
+
+            <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-6 py-3">
+                Enviar Información
+            </button>
+
+
+    </form>
+</section>
+
+
+
+
+</body>
+</html>
