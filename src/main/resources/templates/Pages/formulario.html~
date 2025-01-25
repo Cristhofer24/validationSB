@@ -120,14 +120,12 @@
                 <div class="sm:col-span-2">
                     <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Descripción de la Enfermedad</label>
                     <textarea th:field="*{description}" id="description" rows="4" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Especifique la enfermedad"></textarea>
-                    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-red-500 text-xs">Dato incorrecto o Vacio </span>
                 </div>
 
                 <!-- Medicación -->
                 <div class="sm:col-span-2">
                     <label for="medications" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Medicación</label>
                     <textarea th:field="*{medicacion}" id="medications" rows="4" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Escriba la medicación"></textarea>
-                    <span th:if="${#fields.hasErrors('medicacion')}" th:errors="*{medicacion}" class="text-red-500 text-xs"> Dato Incorrecto o Vacio </span>
                 </div>
             </div>
         </div>
@@ -141,15 +139,12 @@
                 <div>
                     <label for="nextvisit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fecha de la Próxima Consulta</label>
                     <input th:field="*{nextvisit}" type="date" id="nextvisit" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
-                    <span th:if="${#fields.hasErrors('nextvisit')}" th:errors="*{nextvisit}" class="text-red-500 text-xs"> Fecha Incorrecta </span>
-
                 </div>
 
                 <!-- Hora de la Próxima Consulta -->
                 <div>
                     <label for="hour" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Hora de la Próxima Consulta</label>
                     <input th:field="*{hora}" type="time" id="hour" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
-                    <span th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}" class="text-red-500 text-xs">Hora Incorrecta</span>
                 </div>
             </div>
         </div>
@@ -163,16 +158,12 @@
                 <div>
                     <label for="nombreDr" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Doctor que le atendió</label>
                     <input th:field="*{nombreDr}" type="text" id="nombreDr" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nombre del doctor">
-                    <span th:if="${#fields.hasErrors('nombreDr')}" th:errors="*{nombreDr}" class="text-red-500 text-xs">Dato Incorrecto</span>
-
                 </div>
 
                 <!-- Precio de la consulta -->
                 <div>
                     <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Precio de la Consulta ($)</label>
                     <input th:field="*{precio}" type="text" id="price" class="block w-full p-3 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Precio en dólares">
-                    <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" class="text-red-500 text-xs">Precio Incorrecto</span>
-
                 </div>
             </div>
         </div>
